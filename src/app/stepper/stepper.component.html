@@ -1,0 +1,27 @@
+<div class="stepper">
+    <div class="stepper__header">
+        @for (step of steps; track step; let index = $index){
+            <div class="stepper__header--step" (click)="setStatus(index, 'isActive')" [ngClass]="step.status" [routerLink]="step.name.toLowerCase()">                
+                <div class="stepper__header--name">
+                    <h4>{{step.name}}</h4>
+                </div>
+                <div class="stepper__header--number" >
+                    @if(step.finished){
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.9535 4.58334L6.62014 11.9167L3.2868 8.58334" stroke="#8D8D8D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    } @else {
+                        {{index+1}}
+                    }
+                </div>
+                <div class="stepper__header--progress"></div>
+            </div>
+        }
+    </div>
+    
+    <router-outlet></router-outlet>
+
+    <button (click)="reset()">Reset</button>
+    
+
+</div>
